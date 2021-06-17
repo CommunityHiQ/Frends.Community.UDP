@@ -1,0 +1,7 @@
+﻿{
+	"Tasks": [
+		{
+			"TaskMethod": "Frends.Community.UDP.UdpTasks.SendAndReceive"
+		}
+	]
+}
