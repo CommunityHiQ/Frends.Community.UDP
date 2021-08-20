@@ -14,13 +14,13 @@ namespace Frends.Community.UDP
     public static class UdpTasks
     {
         /// <summary>
-        /// This is task
+        /// This task sends and receives data using UDP.
         /// Documentation: https://github.com/CommunityHiQ/Frends.Community.UDP
         /// </summary>
         /// <param name="input">What to repeat.</param>
         /// <param name="options">Define if repeated multiple times. </param>
         /// <param name="cancellationToken"></param>
-        /// <returns>{string Replication} </returns>
+        /// <returns>{JArray Responses} </returns>
         public async static Task<Result> SendAndReceive(Parameters input, [PropertyTab] Options options, CancellationToken cancellationToken)
         {
 

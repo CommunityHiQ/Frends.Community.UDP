@@ -20,20 +20,21 @@ https://www.myget.org/F/frends-community/api/v3/index.json and in Gallery view i
 
 ## UdpTasks
 
-Sends a udp message and waits for a reply
+Sends an udp message and waits for a reply
 
 ### Properties
 
 | Property | Type | Description | Example |
 | -------- | -------- | -------- | -------- |
-| Message | `string` | Some string that will be repeated. | `foo` |
+| Commands | `Array{Send command:string, Response start: string, Response end:string` | Arrauy of : command to send to receiver and start and end part of response. The task enforces start and end tags, so if none is found the task will eventually timeout  | `Send command: "MODEL\r, Response start: ACK, Response end: "\r"` |
+| Ip address | `string` | IP address of endpoint | `10.0.0.1` |
+| Port | `string` | IP port of endpoint | `10.0.0.1` |
 
 ### Options
 
 | Property | Type | Description | Example |
 | -------- | -------- | -------- | -------- |
-| Amount | `int` | Amount how many times message is repeated. | `3` |
-| Delimiter | `string` | Character(s) used between replications. | `, ` |
+| Timeout | `int` | Timeout for operation in milliseconds | `3000` |
 
 ### Returns
 
@@ -41,12 +42,23 @@ A result object with parameters.
 
 | Property | Type | Description | Example |
 | -------- | -------- | -------- | -------- |
-| Replication | `string` | Repeated string. | `foo, foo, foo` |
+| Responses | `Array {string}` | String array of responses. Item count in array is equal to command counf and the order is the same | `ACK MODEL unD6IO-BT\r, ACK VERSION 1.6\r, ACK BTS 0\r` |
+
+Example response:
+```
+{
+	"Responses": [
+		"ACK MODEL unD6IO-BT\r",
+		"ACK VERSION 1.6\r",
+		"ACK BTS 0\r"
+	]
+}
+```
 
 Usage:
 To fetch result use syntax:
 
-`#result.Replication`
+`#result.Responses[0]`
 
 # Building
 
@@ -81,4 +93,4 @@ NOTE: Be sure to merge the latest from "upstream" before making a pull request!
 
 | Version | Changes |
 | ------- | ------- |
-| 0.0.1   | Development still going on |
+| 1.0.0   | First version |
